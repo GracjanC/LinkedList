@@ -33,6 +33,39 @@ public class LinkedList<T> {
         return nodeReference;
     }
 
+    public Node<T> insert(int index, T data) {
+        int indexCounter = 0;
+        Node<T> newNode = new Node<T>(data);
+        Node<T> currentNode = this.head;
+        Node<T> previousNode = this.head;
+
+        while (indexCounter != index) {
+
+            if (currentNode.getNext() == null) {
+
+                System.out.println("Index out of bound");
+                return null;
+
+            } else {
+                previousNode = currentNode;
+                currentNode = currentNode.getNext();
+            }
+            indexCounter++;
+        }
+        
+        if (currentNode == this.head) {
+            newNode.setNext(currentNode);
+            this.head = newNode;
+
+        } else {
+            newNode.setNext(currentNode);
+            currentNode = newNode;
+            previousNode.setNext(currentNode);
+        }
+
+        return currentNode;
+    }
+
     public Node<T> remove(int index) {
         int indexCounter = 0;
         Node<T> currentNode = this.head;
